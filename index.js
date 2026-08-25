@@ -75,7 +75,14 @@ async function toggleRole(interaction) {
   return interaction.reply({ content: `➕ Added ${role}.`, ephemeral: config.ephemeralReplies });
 }
 
-client.login(config.token);
+client.login(config.token).catch((error) => {
+  if (String(error.code) === 'TokenInvalid' || String(error).includes('TOKEN_INVALID')) {
+    console.error('[role-bot] Discord rejected DISCORD_TOKEN. Reset it at discord.com/developers → your app → Bot → Reset Token, paste the new one under Environment variables in the FadeHost panel, and restart.');
+  } else {
+    console.error(`[role-bot] Could not log in to Discord: ${error.message}`);
+  }
+  process.exit(1);
+});
 
 // The FadeHost runtime sends SIGTERM on stop/restart — exit cleanly.
 for (const signal of ['SIGTERM', 'SIGINT']) {
