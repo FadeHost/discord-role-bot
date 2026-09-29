@@ -1,5 +1,7 @@
 # FadeHost Role Bot
 
+[![Deploy to FadeHost](https://fadehost.com/deploy-button.svg)](https://laplace.fadehost.com/register?intent=bot&repo=https://github.com/FadeHost/discord-role-bot)
+
 A self-assign role bot for Discord. Post a message with buttons; members click to give themselves roles. No database, nothing to configure beyond your bot token.
 
 ## Setup on FadeHost
